@@ -22,3 +22,7 @@ Example:
 ```
 
 Keep `index.html` and `content.json` in the same directory. Because the game loads the JSON with `fetch()`, open the site through GitHub Pages or a local web server; opening `index.html` directly as a `file://` URL may prevent the JSON from loading.
+
+## Word Rocket controls
+
+The round is armed automatically when the game loads. The 30-second countdown starts with the first typed character; there is no Start Round button. After a round finishes, use **Fly again** on the results screen to begin another round.
