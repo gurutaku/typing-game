@@ -2,21 +2,21 @@
 
 ## Edit the game content
 
-Update `content.json` to change the words used in **Word Rocket** and the sentences used in **Sentence Quest**.
+All Word Rocket words and Sentence Quest sentences are in `content.json`. You do not need to edit `index.html` to change them.
 
-- Add, edit, or remove entries inside the `words` array.
-- Add, edit, or remove entries inside the `sentences` array.
-- Keep each entry inside double quotes and separate entries with commas.
-- Make sure the JSON remains valid. Do not add a comma after the last entry in an array.
+- Add, edit, or remove items in the `words` array to change the Word Rocket vocabulary.
+- Add, edit, or remove items in the `sentences` array to change Sentence Quest.
+- The included word pool is curated for kids: everyday vocabulary, animals, nature, science, learning, positive traits, food, and hobbies. The game shuffles the list and runs through the pool before repeating words. Review any additions before publishing.
+- Keep each text item in double quotes, separate items with commas, and do not put a comma after the final item.
 
 Example:
 
 ```json
 {
-  "words": ["sunshine", "planet", "rainbow"],
+  "words": ["apple", "planet", "rainbow", "kindness"],
   "sentences": [
     "The quick fox jumps over the log.",
-    "I can learn something new each day."
+    "I love learning new things!"
   ]
 }
 ```
