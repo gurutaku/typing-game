@@ -1,149 +1,1413 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#f6f8ff">
-<title>Key Quest — Typing Adventures</title>
-<style>
-:root{--ink:#20294a;--muted:#68718e;--paper:#fff;--bg:#f5f7ff;--purple:#6f5ae8;--purple-dark:#5540ce;--blue:#4a91e8;--mint:#65d8bd;--yellow:#ffd86b;--pink:#ff8da6;--line:#e7eafb;--good:#168d6c;--bad:#d64f6b;--shadow:0 14px 35px rgba(53,58,112,.10)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:ui-rounded,"Trebuchet MS",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:radial-gradient(circle at 8% 1%,#e9e4ff 0,transparent 27rem),radial-gradient(circle at 96% 18%,#defbf3 0,transparent 26rem),var(--bg);min-height:100vh}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:3px solid #ffb938;outline-offset:3px}button:disabled{opacity:.5;cursor:not-allowed}.shell{max-width:1120px;margin:auto;padding:20px 22px 44px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:30px}.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;min-width:0}.brand-mark{width:46px;height:46px;display:grid;place-items:center;background:linear-gradient(145deg,#8170f3,#5642d5);color:white;border-radius:15px;font-size:25px;box-shadow:0 7px 14px #7b6fe744}.brand-name{font-weight:950;font-size:20px;letter-spacing:-.5px}.brand-sub{font-size:12px;color:var(--muted);margin-top:2px}.top-actions{display:flex;align-items:center;gap:10px}.pill-stat{background:#fff;border:1px solid var(--line);border-radius:999px;padding:10px 13px;font-size:13px;font-weight:850;white-space:nowrap}.pill-stat span{margin-right:5px}.quiet-btn{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:12px;padding:10px 12px;font-weight:800}
-.hero{position:relative;overflow:hidden;border-radius:28px;padding:clamp(26px,5vw,54px);background:linear-gradient(125deg,#6655df 0%,#8170f0 60%,#9c8aff 100%);color:#fff;box-shadow:0 22px 46px #6b5be52a;margin-bottom:28px}.hero:after{content:"⌨️";position:absolute;right:5%;bottom:-15px;font-size:clamp(100px,17vw,180px);transform:rotate(-12deg);opacity:.17}.hero-content{position:relative;z-index:1;max-width:650px}.eyebrow{font-size:12px;letter-spacing:1.8px;text-transform:uppercase;font-weight:900;opacity:.85}.hero h1{font-size:clamp(34px,5.7vw,58px);line-height:1.04;letter-spacing:-2px;margin:13px 0 14px;max-width:650px}.hero p{font-size:17px;line-height:1.6;max-width:540px;margin:0;color:#f0eeff}.btn{border:0;border-radius:14px;padding:13px 18px;font-weight:900;transition:transform .15s,box-shadow .15s}.btn:hover:not(:disabled){transform:translateY(-2px)}.btn-primary{background:var(--purple);color:#fff;box-shadow:0 7px 14px #6f5ae833}.btn-soft{background:#f0edff;color:var(--purple-dark)}.btn-small{padding:9px 12px;border-radius:11px;font-size:13px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:32px 0 16px}.section-head h2{font-size:24px;letter-spacing:-.6px;margin:0}.section-head p{margin:5px 0 0;color:var(--muted);font-size:14px}.section-kicker{font-size:11px;text-transform:uppercase;letter-spacing:1.4px;font-weight:900;color:var(--purple);margin-bottom:7px}.game-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.game-card{border:1px solid var(--line);background:var(--paper);border-radius:22px;padding:22px;box-shadow:var(--shadow);display:flex;flex-direction:column;min-height:255px;position:relative;overflow:hidden}.game-card:before{content:"";position:absolute;right:-18px;top:-28px;width:112px;height:112px;border-radius:50%;background:var(--wash);opacity:.8}.game-icon{width:57px;height:57px;border-radius:17px;background:var(--wash);display:grid;place-items:center;font-size:29px;position:relative}.game-card h3{font-size:20px;margin:18px 0 7px;letter-spacing:-.4px}.game-card p{font-size:14px;line-height:1.55;color:var(--muted);margin:0 0 18px;flex:1}.card-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px}.tag{font-size:11px;letter-spacing:.2px;font-weight:900;background:#f4f5fc;padding:7px 9px;border-radius:9px;color:#66708e}.play-link{border:0;background:var(--ink);color:#fff;padding:10px 13px;border-radius:11px;font-weight:850;font-size:13px}.lower-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;margin-top:22px}.panel{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--shadow)}.panel h3{margin:0 0 6px;font-size:19px}.panel p{color:var(--muted);margin:0;font-size:13px;line-height:1.55}.progress-row{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-top:18px;font-size:13px;font-weight:850}.progress-track{height:10px;border-radius:99px;background:#eeeff9;overflow:hidden;margin-top:8px}.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--purple),#aa8cf6);border-radius:99px;transition:width .3s}.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}.badge{border-radius:11px;padding:8px 10px;background:#f4f2ff;color:#6452d9;font-size:12px;font-weight:850}.badge.locked{background:#f5f6fa;color:#a4a9bc}.page{display:none}.page.active{display:block;animation:appear .2s ease}@keyframes appear{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}.back-row{display:flex;align-items:center;gap:12px;margin:8px 0 20px}.back-btn{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-weight:850;color:var(--ink)}.back-row .crumb{color:var(--muted);font-size:13px;font-weight:800}.activity-title{margin-bottom:20px}.activity-title .section-kicker{margin:0 0 7px}.activity-title h1{font-size:clamp(28px,4vw,39px);letter-spacing:-1.3px;margin:0}.activity-title p{margin:7px 0 0;color:var(--muted);line-height:1.6}.game-layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(240px,.8fr);gap:16px;align-items:start}.play-panel{padding:clamp(18px,3vw,28px)}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px}.panel-head h2{font-size:19px;margin:0}.mini-count{font-weight:900;font-size:12px;background:#f1efff;color:var(--purple-dark);padding:8px 10px;border-radius:10px;white-space:nowrap}.instruction{font-size:14px;color:var(--muted);line-height:1.55;margin:0 0 17px}.target-box{min-height:150px;border-radius:20px;background:linear-gradient(135deg,#f2f0ff,#f7fbff);border:1px solid #e6e1ff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;margin-bottom:16px}.target-label{font-size:11px;text-transform:uppercase;font-weight:900;letter-spacing:1.4px;color:#7772a5}.target-key{font-size:76px;font-weight:950;line-height:1.1;letter-spacing:-3px;color:var(--purple);margin:8px 0}.target-hint{font-size:13px;color:var(--muted)}.type-label{font-size:12px;display:block;font-weight:900;margin:15px 0 7px}.typing-input{width:100%;border:2px solid #e3e6f4;border-radius:14px;padding:15px 16px;font-size:19px;font-weight:700;color:var(--ink);background:#fff;outline:0;transition:border .15s,box-shadow .15s}.typing-input:focus{border-color:#9485f5;box-shadow:0 0 0 4px #9282f522}.typing-input::placeholder{font-weight:500;color:#a8aec1}.field-note{font-size:12px;color:var(--muted);margin-top:7px;min-height:18px}.feedback{min-height:26px;margin-top:12px;font-size:14px;font-weight:850}.feedback.good{color:var(--good)}.feedback.bad{color:var(--bad)}.action-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.keyboard-wrap{margin-top:20px}.keyboard-title{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:10px;font-size:12px;font-weight:900;color:var(--muted)}.keyboard{display:flex;flex-direction:column;gap:6px;user-select:none}.key-row{display:flex;justify-content:center;gap:5px}.key{height:42px;min-width:0;flex:1;max-width:46px;border-radius:9px;background:#f9faff;border:1px solid #dfe4f4;box-shadow:0 3px 0 #e1e4f0;display:grid;place-items:center;color:#505b7d;font-size:12px;font-weight:850;position:relative}.key.wide{max-width:65px;font-size:10px}.key.space{max-width:none;flex:5}.key.active{background:var(--yellow);border-color:#f0b82f;color:#6e4d00;box-shadow:0 3px 0 #edbe45;transform:translateY(-1px)}.key.done{background:#d9f8ed;border-color:#84dec0;color:#137358}.side-panel{padding:20px}.side-panel h3{margin-bottom:7px}.side-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:16px 0}.side-stat{background:#f7f8ff;border-radius:14px;padding:13px}.side-stat strong{display:block;font-size:23px;letter-spacing:-.8px}.side-stat span{font-size:11px;color:var(--muted);font-weight:850}.tip{background:#fff7dc;border:1px solid #ffedab;border-radius:14px;padding:13px;font-size:12px;line-height:1.55;color:#80621a;margin-top:12px}.tip strong{display:block;margin-bottom:3px}.mode-options{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}.mode-btn{border:1px solid var(--line);background:#fff;color:var(--muted);font-weight:850;border-radius:11px;padding:10px 12px;font-size:13px}.mode-btn.selected{background:#f0edff;color:var(--purple-dark);border-color:#d7ceff}.word-target{min-height:150px}.word-target .target-key{font-size:clamp(35px,5vw,54px);letter-spacing:-1.5px;overflow-wrap:anywhere}.sentence-quote{font-size:clamp(20px,2.6vw,27px);font-weight:900;line-height:1.45;letter-spacing:-.4px;color:#37345f}.sentence-quote .typed{color:#9c94cb}.sentence-quote .next-char{background:var(--yellow);border-radius:4px;color:#5c460d;text-decoration:underline;text-underline-offset:4px}.sentence-quote .wrong-char{color:var(--bad);background:#ffe9ed;border-radius:4px;text-decoration:underline;text-decoration-color:#e98da0}.word-input{font-size:22px;letter-spacing:.5px}.timer-bar{height:8px;border-radius:99px;overflow:hidden;background:#edeffc;margin:0 0 15px}.timer-fill{height:100%;width:100%;background:linear-gradient(90deg,#61d8ba,#fbd46b);transition:width .2s linear}.result{text-align:center;padding:26px 10px}.result .result-icon{font-size:52px}.result h2{font-size:30px;margin:8px 0}.result p{color:var(--muted);line-height:1.6}.result-score{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin:20px 0}.result-chip{background:#f4f2ff;border-radius:13px;padding:13px 17px;min-width:95px}.result-chip strong{display:block;font-size:24px}.result-chip span{font-size:11px;color:var(--muted);font-weight:850}.hidden{display:none!important}.footer{text-align:center;color:#99a0b7;font-size:12px;padding:30px 0 0}.toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,20px);opacity:0;background:#25294c;color:white;padding:12px 17px;border-radius:13px;z-index:10;font-size:13px;font-weight:850;pointer-events:none;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}.toast.persistent{max-width:min(560px,calc(100% - 28px));white-space:normal;text-align:center;line-height:1.45;opacity:1;transform:translate(-50%,0)}
-@media(max-width:840px){.game-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.game-card:last-child{grid-column:span 2;min-height:210px}.game-layout{grid-template-columns:1fr}.side-panel{display:grid;grid-template-columns:1fr 1fr;gap:12px}.side-panel>h3,.side-panel>p,.side-panel>.tip{grid-column:span 2}.side-stat-grid{margin:5px 0}.lower-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:560px){.shell{padding:13px 13px 30px}.topbar{margin-bottom:18px}.brand-mark{width:40px;height:40px;font-size:22px}.brand-name{font-size:17px}.brand-sub{font-size:10px}.pill-stat{padding:9px 10px;font-size:12px}.pill-stat.stars-top{display:none}.quiet-btn{padding:9px 10px}.hero{border-radius:22px;padding:27px 22px}.hero h1{font-size:40px}.hero p{font-size:15px;max-width:92%}.hero:after{right:-20px;bottom:-12px;font-size:105px}.section-head{margin-top:25px}.section-head h2{font-size:22px}.game-grid{grid-template-columns:1fr;gap:11px}.game-card,.game-card:last-child{grid-column:auto;min-height:0;padding:17px;display:grid;grid-template-columns:57px 1fr;column-gap:13px;align-items:start}.game-icon{grid-row:span 3}.game-card h3{margin:2px 0 5px;font-size:18px}.game-card p{margin:0 0 12px}.card-bottom{grid-column:2}.lower-grid{grid-template-columns:1fr;gap:12px}.panel{border-radius:18px;padding:17px}.side-panel{display:block}.side-stat-grid{margin:16px 0}.target-box{min-height:135px}.target-key{font-size:65px}.key-row{gap:3px}.keyboard{gap:5px}.key{height:34px;border-radius:6px;font-size:10px;box-shadow:0 2px 0 #e1e4f0}.key.wide{font-size:8px}.key-row:nth-child(2){margin:0 7px}.key-row:nth-child(3){margin:0 18px}.back-row{margin-bottom:17px}.activity-title h1{font-size:30px}.game-layout{gap:12px}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f8ff">
+  <title>Key Quest — Typing Adventures</title>
+  <style>
+    :root {
+      --ink: #20294a;
+      --muted: #68718e;
+      --paper: #fff;
+      --bg: #f5f7ff;
+      --purple: #6f5ae8;
+      --purple-dark: #5540ce;
+      --blue: #4a91e8;
+      --mint: #65d8bd;
+      --yellow: #ffd86b;
+      --pink: #ff8da6;
+      --line: #e7eafb;
+      --good: #168d6c;
+      --bad: #d64f6b;
+      --shadow: 0 14px 35px rgba(53, 58, 112, .10)
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      margin: 0;
+      font-family: ui-rounded, "Trebuchet MS", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: radial-gradient(circle at 8% 1%, #e9e4ff 0, transparent 27rem), radial-gradient(circle at 96% 18%, #defbf3 0, transparent 26rem), var(--bg);
+      min-height: 100vh
+    }
+
+    button,
+    input {
+      font: inherit
+    }
+
+    button {
+      cursor: pointer
+    }
+
+    button:focus-visible,
+    input:focus-visible {
+      outline: 3px solid #ffb938;
+      outline-offset: 3px
+    }
+
+    button:disabled {
+      opacity: .5;
+      cursor: not-allowed
+    }
+
+    .shell {
+      max-width: 1120px;
+      margin: auto;
+      padding: 20px 22px 44px
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 30px
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+      min-width: 0
+    }
+
+    .brand-mark {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, #8170f3, #5642d5);
+      color: white;
+      border-radius: 15px;
+      font-size: 25px;
+      box-shadow: 0 7px 14px #7b6fe744
+    }
+
+    .brand-name {
+      font-weight: 950;
+      font-size: 20px;
+      letter-spacing: -.5px
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .pill-stat {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 13px;
+      font-size: 13px;
+      font-weight: 850;
+      white-space: nowrap
+    }
+
+    .pill-stat span {
+      margin-right: 5px
+    }
+
+    .quiet-btn {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-weight: 800
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      padding: clamp(26px, 5vw, 54px);
+      background: linear-gradient(125deg, #6655df 0%, #8170f0 60%, #9c8aff 100%);
+      color: #fff;
+      box-shadow: 0 22px 46px #6b5be52a;
+      margin-bottom: 28px
+    }
+
+    .hero:after {
+      content: "⌨️";
+      position: absolute;
+      right: 5%;
+      bottom: -15px;
+      font-size: clamp(100px, 17vw, 180px);
+      transform: rotate(-12deg);
+      opacity: .17
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 650px
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      font-weight: 900;
+      opacity: .85
+    }
+
+    .hero h1 {
+      font-size: clamp(34px, 5.7vw, 58px);
+      line-height: 1.04;
+      letter-spacing: -2px;
+      margin: 13px 0 14px;
+      max-width: 650px
+    }
+
+    .hero p {
+      font-size: 17px;
+      line-height: 1.6;
+      max-width: 540px;
+      margin: 0;
+      color: #f0eeff
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 14px;
+      padding: 13px 18px;
+      font-weight: 900;
+      transition: transform .15s, box-shadow .15s
+    }
+
+    .btn:hover:not(:disabled) {
+      transform: translateY(-2px)
+    }
+
+    .btn-primary {
+      background: var(--purple);
+      color: #fff;
+      box-shadow: 0 7px 14px #6f5ae833
+    }
+
+    .btn-soft {
+      background: #f0edff;
+      color: var(--purple-dark)
+    }
+
+    .btn-small {
+      padding: 9px 12px;
+      border-radius: 11px;
+      font-size: 13px
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 32px 0 16px
+    }
+
+    .section-head h2 {
+      font-size: 24px;
+      letter-spacing: -.6px;
+      margin: 0
+    }
+
+    .section-head p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 14px
+    }
+
+    .section-kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      font-weight: 900;
+      color: var(--purple);
+      margin-bottom: 7px
+    }
+
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px
+    }
+
+    .game-card {
+      border: 1px solid var(--line);
+      background: var(--paper);
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      min-height: 255px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .game-card:before {
+      content: "";
+      position: absolute;
+      right: -18px;
+      top: -28px;
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      background: var(--wash);
+      opacity: .8
+    }
+
+    .game-icon {
+      width: 57px;
+      height: 57px;
+      border-radius: 17px;
+      background: var(--wash);
+      display: grid;
+      place-items: center;
+      font-size: 29px;
+      position: relative
+    }
+
+    .game-card h3 {
+      font-size: 20px;
+      margin: 18px 0 7px;
+      letter-spacing: -.4px
+    }
+
+    .game-card p {
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--muted);
+      margin: 0 0 18px;
+      flex: 1
+    }
+
+    .card-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px
+    }
+
+    .tag {
+      font-size: 11px;
+      letter-spacing: .2px;
+      font-weight: 900;
+      background: #f4f5fc;
+      padding: 7px 9px;
+      border-radius: 9px;
+      color: #66708e
+    }
+
+    .play-link {
+      border: 0;
+      background: var(--ink);
+      color: #fff;
+      padding: 10px 13px;
+      border-radius: 11px;
+      font-weight: 850;
+      font-size: 13px
+    }
+
+    .lower-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 16px;
+      margin-top: 22px
+    }
+
+    .panel {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: var(--shadow)
+    }
+
+    .panel h3 {
+      margin: 0 0 6px;
+      font-size: 19px
+    }
+
+    .panel p {
+      color: var(--muted);
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.55
+    }
+
+    .progress-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      margin-top: 18px;
+      font-size: 13px;
+      font-weight: 850
+    }
+
+    .progress-track {
+      height: 10px;
+      border-radius: 99px;
+      background: #eeeff9;
+      overflow: hidden;
+      margin-top: 8px
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--purple), #aa8cf6);
+      border-radius: 99px;
+      transition: width .3s
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 15px
+    }
+
+    .badge {
+      border-radius: 11px;
+      padding: 8px 10px;
+      background: #f4f2ff;
+      color: #6452d9;
+      font-size: 12px;
+      font-weight: 850
+    }
+
+    .badge.locked {
+      background: #f5f6fa;
+      color: #a4a9bc
+    }
+
+    .page {
+      display: none
+    }
+
+    .page.active {
+      display: block;
+      animation: appear .2s ease
+    }
+
+    @keyframes appear {
+      from {
+        opacity: .4;
+        transform: translateY(4px)
+      }
+
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    .back-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 8px 0 20px
+    }
+
+    .back-btn {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-weight: 850;
+      color: var(--ink)
+    }
+
+    .back-row .crumb {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800
+    }
+
+    .activity-title {
+      margin-bottom: 20px
+    }
+
+    .activity-title .section-kicker {
+      margin: 0 0 7px
+    }
+
+    .activity-title h1 {
+      font-size: clamp(28px, 4vw, 39px);
+      letter-spacing: -1.3px;
+      margin: 0
+    }
+
+    .activity-title p {
+      margin: 7px 0 0;
+      color: var(--muted);
+      line-height: 1.6
+    }
+
+    .game-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(240px, .8fr);
+      gap: 16px;
+      align-items: start
+    }
+
+    .play-panel {
+      padding: clamp(18px, 3vw, 28px)
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 16px
+    }
+
+    .panel-head h2 {
+      font-size: 19px;
+      margin: 0
+    }
+
+    .mini-count {
+      font-weight: 900;
+      font-size: 12px;
+      background: #f1efff;
+      color: var(--purple-dark);
+      padding: 8px 10px;
+      border-radius: 10px;
+      white-space: nowrap
+    }
+
+    .instruction {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.55;
+      margin: 0 0 17px
+    }
+
+    .target-box {
+      min-height: 150px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #f2f0ff, #f7fbff);
+      border: 1px solid #e6e1ff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 16px
+    }
+
+    .target-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 900;
+      letter-spacing: 1.4px;
+      color: #7772a5
+    }
+
+    .target-key {
+      font-size: 76px;
+      font-weight: 950;
+      line-height: 1.1;
+      letter-spacing: -3px;
+      color: var(--purple);
+      margin: 8px 0
+    }
+
+    .target-hint {
+      font-size: 13px;
+      color: var(--muted)
+    }
+
+    .type-label {
+      font-size: 12px;
+      display: block;
+      font-weight: 900;
+      margin: 15px 0 7px
+    }
+
+    .typing-input {
+      width: 100%;
+      border: 2px solid #e3e6f4;
+      border-radius: 14px;
+      padding: 15px 16px;
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--ink);
+      background: #fff;
+      outline: 0;
+      transition: border .15s, box-shadow .15s
+    }
+
+    .typing-input:focus {
+      border-color: #9485f5;
+      box-shadow: 0 0 0 4px #9282f522
+    }
+
+    .typing-input::placeholder {
+      font-weight: 500;
+      color: #a8aec1
+    }
+
+    .field-note {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 7px;
+      min-height: 18px
+    }
+
+    .feedback {
+      min-height: 26px;
+      margin-top: 12px;
+      font-size: 14px;
+      font-weight: 850
+    }
+
+    .feedback.good {
+      color: var(--good)
+    }
+
+    .feedback.bad {
+      color: var(--bad)
+    }
+
+    .action-row {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+      margin-top: 14px
+    }
+
+    .keyboard-wrap {
+      margin-top: 20px
+    }
+
+    .keyboard-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--muted)
+    }
+
+    .keyboard {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      user-select: none
+    }
+
+    .key-row {
+      display: flex;
+      justify-content: center;
+      gap: 5px
+    }
+
+    .key {
+      height: 42px;
+      min-width: 0;
+      flex: 1;
+      max-width: 46px;
+      border-radius: 9px;
+      background: #f9faff;
+      border: 1px solid #dfe4f4;
+      box-shadow: 0 3px 0 #e1e4f0;
+      display: grid;
+      place-items: center;
+      color: #505b7d;
+      font-size: 12px;
+      font-weight: 850;
+      position: relative
+    }
+
+    .key.wide {
+      max-width: 65px;
+      font-size: 10px
+    }
+
+    .key.space {
+      max-width: none;
+      flex: 5
+    }
+
+    .key.active {
+      background: var(--yellow);
+      border-color: #f0b82f;
+      color: #6e4d00;
+      box-shadow: 0 3px 0 #edbe45;
+      transform: translateY(-1px)
+    }
+
+    .key.done {
+      background: #d9f8ed;
+      border-color: #84dec0;
+      color: #137358
+    }
+
+    .side-panel {
+      padding: 20px
+    }
+
+    .side-panel h3 {
+      margin-bottom: 7px
+    }
+
+    .side-stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+      margin: 16px 0
+    }
+
+    .side-stat {
+      background: #f7f8ff;
+      border-radius: 14px;
+      padding: 13px
+    }
+
+    .side-stat strong {
+      display: block;
+      font-size: 23px;
+      letter-spacing: -.8px
+    }
+
+    .side-stat span {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 850
+    }
+
+    .tip {
+      background: #fff7dc;
+      border: 1px solid #ffedab;
+      border-radius: 14px;
+      padding: 13px;
+      font-size: 12px;
+      line-height: 1.55;
+      color: #80621a;
+      margin-top: 12px
+    }
+
+    .tip strong {
+      display: block;
+      margin-bottom: 3px
+    }
+
+    .mode-options {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      margin-bottom: 16px
+    }
+
+    .mode-btn {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--muted);
+      font-weight: 850;
+      border-radius: 11px;
+      padding: 10px 12px;
+      font-size: 13px
+    }
+
+    .mode-btn.selected {
+      background: #f0edff;
+      color: var(--purple-dark);
+      border-color: #d7ceff
+    }
+
+    .word-target {
+      min-height: 150px
+    }
+
+    .word-target .target-key {
+      font-size: clamp(35px, 5vw, 54px);
+      letter-spacing: -1.5px;
+      overflow-wrap: anywhere
+    }
+
+    .sentence-quote {
+      font-size: clamp(20px, 2.6vw, 27px);
+      font-weight: 900;
+      line-height: 1.45;
+      letter-spacing: -.4px;
+      color: #37345f
+    }
+
+    .sentence-quote .typed {
+      color: #9c94cb
+    }
+
+    .sentence-quote .next-char {
+      background: var(--yellow);
+      border-radius: 4px;
+      color: #5c460d;
+      text-decoration: underline;
+      text-underline-offset: 4px
+    }
+
+    .sentence-quote .wrong-char {
+      color: var(--bad);
+      background: #ffe9ed;
+      border-radius: 4px;
+      text-decoration: underline;
+      text-decoration-color: #e98da0
+    }
+
+    .word-input {
+      font-size: 22px;
+      letter-spacing: .5px
+    }
+
+    .timer-bar {
+      height: 8px;
+      border-radius: 99px;
+      overflow: hidden;
+      background: #edeffc;
+      margin: 0 0 15px
+    }
+
+    .timer-fill {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, #61d8ba, #fbd46b);
+      transition: width .2s linear
+    }
+
+    .result {
+      text-align: center;
+      padding: 26px 10px
+    }
+
+    .result .result-icon {
+      font-size: 52px
+    }
+
+    .result h2 {
+      font-size: 30px;
+      margin: 8px 0
+    }
+
+    .result p {
+      color: var(--muted);
+      line-height: 1.6
+    }
+
+    .result-score {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0
+    }
+
+    .result-chip {
+      background: #f4f2ff;
+      border-radius: 13px;
+      padding: 13px 17px;
+      min-width: 95px
+    }
+
+    .result-chip strong {
+      display: block;
+      font-size: 24px
+    }
+
+    .result-chip span {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 850
+    }
+
+    .hidden {
+      display: none !important
+    }
+
+    .footer {
+      text-align: center;
+      color: #99a0b7;
+      font-size: 12px;
+      padding: 30px 0 0
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 20px;
+      transform: translate(-50%, 20px);
+      opacity: 0;
+      background: #25294c;
+      color: white;
+      padding: 12px 17px;
+      border-radius: 13px;
+      z-index: 10;
+      font-size: 13px;
+      font-weight: 850;
+      pointer-events: none;
+      transition: .2s
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0)
+    }
+
+    .toast.persistent {
+      max-width: min(560px, calc(100% - 28px));
+      white-space: normal;
+      text-align: center;
+      line-height: 1.45;
+      opacity: 1;
+      transform: translate(-50%, 0)
+    }
+
+    @media(max-width:840px) {
+      .game-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+
+      .game-card:last-child {
+        grid-column: span 2;
+        min-height: 210px
+      }
+
+      .game-layout {
+        grid-template-columns: 1fr
+      }
+
+      .side-panel {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px
+      }
+
+      .side-panel>h3,
+      .side-panel>p,
+      .side-panel>.tip {
+        grid-column: span 2
+      }
+
+      .side-stat-grid {
+        margin: 5px 0
+      }
+
+      .lower-grid {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    @media(max-width:560px) {
+      .shell {
+        padding: 13px 13px 30px
+      }
+
+      .topbar {
+        margin-bottom: 18px
+      }
+
+      .brand-mark {
+        width: 40px;
+        height: 40px;
+        font-size: 22px
+      }
+
+      .brand-name {
+        font-size: 17px
+      }
+
+      .brand-sub {
+        font-size: 10px
+      }
+
+      .pill-stat {
+        padding: 9px 10px;
+        font-size: 12px
+      }
+
+      .pill-stat.stars-top {
+        display: none
+      }
+
+      .quiet-btn {
+        padding: 9px 10px
+      }
+
+      .hero {
+        border-radius: 22px;
+        padding: 27px 22px
+      }
+
+      .hero h1 {
+        font-size: 40px
+      }
+
+      .hero p {
+        font-size: 15px;
+        max-width: 92%
+      }
+
+      .hero:after {
+        right: -20px;
+        bottom: -12px;
+        font-size: 105px
+      }
+
+      .section-head {
+        margin-top: 25px
+      }
+
+      .section-head h2 {
+        font-size: 22px
+      }
+
+      .game-grid {
+        grid-template-columns: 1fr;
+        gap: 11px
+      }
+
+      .game-card,
+      .game-card:last-child {
+        grid-column: auto;
+        min-height: 0;
+        padding: 17px;
+        display: grid;
+        grid-template-columns: 57px 1fr;
+        column-gap: 13px;
+        align-items: start
+      }
+
+      .game-icon {
+        grid-row: span 3
+      }
+
+      .game-card h3 {
+        margin: 2px 0 5px;
+        font-size: 18px
+      }
+
+      .game-card p {
+        margin: 0 0 12px
+      }
+
+      .card-bottom {
+        grid-column: 2
+      }
+
+      .lower-grid {
+        grid-template-columns: 1fr;
+        gap: 12px
+      }
+
+      .panel {
+        border-radius: 18px;
+        padding: 17px
+      }
+
+      .side-panel {
+        display: block
+      }
+
+      .side-stat-grid {
+        margin: 16px 0
+      }
+
+      .target-box {
+        min-height: 135px
+      }
+
+      .target-key {
+        font-size: 65px
+      }
+
+      .key-row {
+        gap: 3px
+      }
+
+      .keyboard {
+        gap: 5px
+      }
+
+      .key {
+        height: 34px;
+        border-radius: 6px;
+        font-size: 10px;
+        box-shadow: 0 2px 0 #e1e4f0
+      }
+
+      .key.wide {
+        font-size: 8px
+      }
+
+      .key-row:nth-child(2) {
+        margin: 0 7px
+      }
+
+      .key-row:nth-child(3) {
+        margin: 0 18px
+      }
+
+      .back-row {
+        margin-bottom: 17px
+      }
+
+      .activity-title h1 {
+        font-size: 30px
+      }
+
+      .game-layout {
+        gap: 12px
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation: none !important;
+        transition: none !important
+      }
+    }
+  </style>
 </head>
+
 <body>
-<div class="shell">
-  <header class="topbar">
-    <a class="brand" href="#home" aria-label="Key Quest home" id="brandHome">
-      <div class="brand-mark" aria-hidden="true">⌨️</div>
-      <div><div class="brand-name">Key Quest</div><div class="brand-sub">Typing adventures for curious kids</div></div>
-    </a>
-    <div class="top-actions"><div class="pill-stat"><span>✨</span><span id="topStars">0</span> stars</div><div class="pill-stat stars-top"><span>🏆</span><span id="topWords">0</span> words</div><button class="quiet-btn" id="homeButton">Home</button></div>
-  </header>
-
-  <main>
-    <section id="homePage" class="page active" aria-labelledby="heroTitle">
-      <div class="hero"><div class="hero-content"><div class="eyebrow">Ready, set, type!</div><h1 id="heroTitle">Your fingers are going places.</h1><p>Learn where the keys live, zoom through word challenges, and turn typing practice into a little adventure. Start at your own pace.</p></div></div>
-      <div class="section-head"><div><div class="section-kicker">Choose your adventure</div><h2>Three ways to level up</h2><p>Practice a little. Celebrate a lot.</p></div></div>
-      <div class="game-grid">
-        <article class="game-card" style="--wash:#fff0c7"><div class="game-icon">🎯</div><h3>Key Safari</h3><p>Find letters on the keyboard and learn which fingers can reach them. A great first stop for new typists.</p><div class="card-bottom"><span class="tag">LEARN THE KEYS</span><button class="play-link" data-open="keys">Explore →</button></div></article>
-        <article class="game-card" style="--wash:#dffaf2"><div class="game-icon">🚀</div><h3>Word Rocket</h3><p>Type as many words as you can before the countdown ends. Accuracy earns points, so take a breath and go!</p><div class="card-bottom"><span class="tag">TIMED CHALLENGE</span><button class="play-link" data-open="sprint">Launch →</button></div></article>
-        <article class="game-card" style="--wash:#ffe3ec"><div class="game-icon">📚</div><h3>Sentence Quest</h3><p>Practice spaces, punctuation, and real sentences. Follow along one character at a time and finish the quest.</p><div class="card-bottom"><span class="tag">REAL-WORLD TYPING</span><button class="play-link" data-open="sentences">Begin →</button></div></article>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="Key Quest home" id="brandHome">
+        <div class="brand-mark" aria-hidden="true">⌨️</div>
+        <div>
+          <div class="brand-name">Key Quest</div>
+          <div class="brand-sub">Typing adventures for curious kids</div>
+        </div>
+      </a>
+      <div class="top-actions">
+        <div class="pill-stat"><span>✨</span><span id="topStars">0</span> stars</div>
+        <div class="pill-stat stars-top"><span>🏆</span><span id="topWords">0</span> words</div><button
+          class="quiet-btn" id="homeButton">Home</button>
       </div>
-      <div class="lower-grid">
-        <section class="panel"><div class="section-kicker">Your adventure log</div><h3>Every practice counts ⭐</h3><p>Your progress stays on this device, so you can come back and beat your own best.</p><div class="progress-row"><span>Keys practiced</span><strong id="homeKeys">0 / 26</strong></div><div class="progress-track"><div class="progress-fill" id="keyProgress"></div></div><div class="progress-row"><span>Words typed</span><strong id="homeWords">0</strong></div><div class="progress-track"><div class="progress-fill" id="wordProgress"></div></div><div class="badges" id="badges"><span class="badge locked">🔒 First 10 words</span><span class="badge locked">🔒 10 keys explored</span><span class="badge locked">🔒 Sentence star</span></div></section>
-        <section class="panel"><div class="section-kicker">Tiny typing tip</div><h3>Home row = home base 🏡</h3><p>Rest your left fingers on A, S, D, F and your right fingers on J, K, L, ;. Let your thumbs rest near the space bar. You can peek at the keyboard while learning.</p><div class="tip"><strong>🌱 Progress, not perfection</strong>It's okay to make mistakes! Slow and steady helps your fingers learn where each key lives.</div></section>
-      </div>
-    </section>
+    </header>
 
-    <section id="keysPage" class="page" aria-labelledby="keysHeading">
-      <div class="back-row"><button class="back-btn" data-home>← Home</button><span class="crumb">Key Safari / Learn the keys</span></div>
-      <div class="activity-title"><div class="section-kicker">Mission 1 · Keyboard explorer</div><h1 id="keysHeading">Key Safari 🎯</h1><p>Look at the big letter, find it on your keyboard, then press it. Choose a row to explore.</p></div>
-      <div class="game-layout"><section class="panel play-panel"><div class="panel-head"><h2>Find this key</h2><span class="mini-count" id="keyCount">Key 1 of 10</span></div>
-        <div class="mode-options" id="keyModes"><button class="mode-btn selected" data-row="home">Home row</button><button class="mode-btn" data-row="top">Top row</button><button class="mode-btn" data-row="bottom">Bottom row</button><button class="mode-btn" data-row="all">All letters</button></div>
-        <div class="target-box"><div class="target-label">Find and press</div><div class="target-key" id="keyTarget">F</div><div class="target-hint" id="keyHint">Left index finger · Home row</div></div>
-        <label class="type-label" for="keyInput">Type the letter here</label><input id="keyInput" class="typing-input" type="text" maxlength="1" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Press the key…" aria-describedby="keyFieldNote">
-        <div class="field-note" id="keyFieldNote">You can use your physical keyboard or tap the box and type.</div><div class="feedback" id="keyFeedback" role="status" aria-live="polite">Ready when you are!</div>
-        <div class="action-row"><button class="btn btn-primary" id="nextKey">Skip this key →</button><button class="btn btn-soft" id="repeatKey">🔊 Hear letter</button></div>
-        <div class="keyboard-wrap"><div class="keyboard-title"><span>KEYBOARD MAP</span><span>Highlighted key = your target</span></div><div class="keyboard" id="keyKeyboard" aria-label="Visual keyboard"></div></div>
+    <main>
+      <section id="homePage" class="page active" aria-labelledby="heroTitle">
+        <div class="hero">
+          <div class="hero-content">
+            <div class="eyebrow">Ready, set, type!</div>
+            <h1 id="heroTitle">Your fingers are going places.</h1>
+            <p>Learn where the keys live, zoom through word challenges, and turn typing practice into a little
+              adventure. Start at your own pace.</p>
+          </div>
+        </div>
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Choose your adventure</div>
+            <h2>Three ways to level up</h2>
+            <p>Practice a little. Celebrate a lot.</p>
+          </div>
+        </div>
+        <div class="game-grid">
+          <article class="game-card" style="--wash:#fff0c7">
+            <div class="game-icon">🎯</div>
+            <h3>Key Safari</h3>
+            <p>Find letters on the keyboard and learn which fingers can reach them. A great first stop for new typists.
+            </p>
+            <div class="card-bottom"><span class="tag">LEARN THE KEYS</span><button class="play-link"
+                data-open="keys">Explore →</button></div>
+          </article>
+          <article class="game-card" style="--wash:#dffaf2">
+            <div class="game-icon">🚀</div>
+            <h3>Word Rocket</h3>
+            <p>Type as many words as you can before the countdown ends. Accuracy earns points, so take a breath and go!
+            </p>
+            <div class="card-bottom"><span class="tag">TIMED CHALLENGE</span><button class="play-link"
+                data-open="sprint">Launch →</button></div>
+          </article>
+          <article class="game-card" style="--wash:#ffe3ec">
+            <div class="game-icon">📚</div>
+            <h3>Sentence Quest</h3>
+            <p>Practice spaces, punctuation, and real sentences. Follow along one character at a time and finish the
+              quest.</p>
+            <div class="card-bottom"><span class="tag">REAL-WORLD TYPING</span><button class="play-link"
+                data-open="sentences">Begin →</button></div>
+          </article>
+        </div>
+        <div class="lower-grid">
+          <section class="panel">
+            <div class="section-kicker">Your adventure log</div>
+            <h3>Every practice counts ⭐</h3>
+            <p>Your progress stays on this device, so you can come back and beat your own best.</p>
+            <div class="progress-row"><span>Keys practiced</span><strong id="homeKeys">0 / 26</strong></div>
+            <div class="progress-track">
+              <div class="progress-fill" id="keyProgress"></div>
+            </div>
+            <div class="progress-row"><span>Words typed</span><strong id="homeWords">0</strong></div>
+            <div class="progress-track">
+              <div class="progress-fill" id="wordProgress"></div>
+            </div>
+            <div class="badges" id="badges"><span class="badge locked">🔒 First 10 words</span><span
+                class="badge locked">🔒 10 keys explored</span><span class="badge locked">🔒 Sentence star</span></div>
+          </section>
+          <section class="panel">
+            <div class="section-kicker">Tiny typing tip</div>
+            <h3>Home row = home base 🏡</h3>
+            <p>Rest your left fingers on A, S, D, F and your right fingers on J, K, L, ;. Let your thumbs rest near the
+              space bar. You can peek at the keyboard while learning.</p>
+            <div class="tip"><strong>🌱 Progress, not perfection</strong>It's okay to make mistakes! Slow and steady
+              helps your fingers learn where each key lives.</div>
+          </section>
+        </div>
       </section>
-      <aside class="panel side-panel"><h3>Your explorer stats</h3><p>Every new key you try gets added to your adventure log.</p><div class="side-stat-grid"><div class="side-stat"><strong id="keysThisRound">0</strong><span>FOUND THIS ROUND</span></div><div class="side-stat"><strong id="keysTotal">0</strong><span>UNIQUE KEYS</span></div><div class="side-stat"><strong id="keyAccuracy">—</strong><span>ROUND ACCURACY</span></div><div class="side-stat"><strong id="keyStars">0</strong><span>STARS EARNED</span></div></div><div class="tip"><strong>🖐️ Finger tip</strong>Keep your wrists relaxed and use a light touch. You do not need to press hard.</div><div class="action-row"><button class="btn btn-soft btn-small" id="resetKeyRound">Restart round ↻</button></div></aside></div>
-    </section>
 
-    <section id="sprintPage" class="page" aria-labelledby="sprintHeading">
-      <div class="back-row"><button class="back-btn" data-home>← Home</button><span class="crumb">Word Rocket / Timed challenge</span></div>
-      <div class="activity-title"><div class="section-kicker">Mission 2 · Speed with care</div><h1 id="sprintHeading">Word Rocket 🚀</h1><p>Type each word correctly to launch it into space. The countdown begins when you start typing.</p></div>
-      <div class="game-layout"><section class="panel play-panel"><div class="panel-head"><h2>Ready for liftoff?</h2><span class="mini-count"><span id="timerText">30</span>s left</span></div><div class="timer-bar"><div class="timer-fill" id="timerFill"></div></div>
-        <div id="sprintPlay"><div class="target-box word-target"><div class="target-label">Type this word</div><div class="target-key" id="wordTarget">sunshine</div><div class="target-hint" id="wordHint">One word at a time · accuracy first!</div></div>
-          <label class="type-label" for="wordInput">Your rocket controls</label><input id="wordInput" class="typing-input word-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type the word…" aria-describedby="wordFieldNote"><div class="field-note" id="wordFieldNote">Start typing to begin the 30-second round.</div><div class="feedback" id="wordFeedback" role="status" aria-live="polite">Ready for liftoff!</div>
-          <div class="action-row"><button class="btn btn-soft" id="skipWord">Skip word →</button></div></div>
-        <div class="result hidden" id="sprintResult"><div class="result-icon" id="resultIcon">🚀</div><h2 id="resultTitle">Great flying!</h2><p id="resultMessage">You did it!</p><div class="result-score"><div class="result-chip"><strong id="resultWords">0</strong><span>WORDS</span></div><div class="result-chip"><strong id="resultAccuracy">0%</strong><span>ACCURACY</span></div><div class="result-chip"><strong id="resultWpm">0</strong><span>WORDS / MIN</span></div></div><button class="btn btn-primary" id="playAgain">Fly again ↻</button></div>
-      </section><aside class="panel side-panel"><h3>Mission dashboard</h3><p>Can you beat your own best? There is no score for rushing past mistakes.</p><div class="side-stat-grid"><div class="side-stat"><strong id="sprintWords">0</strong><span>WORDS THIS ROUND</span></div><div class="side-stat"><strong id="sprintBest">0</strong><span>PERSONAL BEST WPM</span></div><div class="side-stat"><strong id="sprintErrors">0</strong><span>MISTAKES</span></div><div class="side-stat"><strong id="sprintStars">0</strong><span>STARS EARNED</span></div></div><div class="tip"><strong>🚀 Rocket rule</strong>Accuracy matters more than speed. Keep your eyes on the word, and use Backspace to fix a typo.</div></aside></div>
-    </section>
+      <section id="keysPage" class="page" aria-labelledby="keysHeading">
+        <div class="back-row"><button class="back-btn" data-home>← Home</button><span class="crumb">Key Safari / Learn
+            the keys</span></div>
+        <div class="activity-title">
+          <div class="section-kicker">Mission 1 · Keyboard explorer</div>
+          <h1 id="keysHeading">Key Safari 🎯</h1>
+          <p>Look at the big letter, find it on your keyboard, then press it. Choose a row to explore.</p>
+        </div>
+        <div class="game-layout">
+          <section class="panel play-panel">
+            <div class="panel-head">
+              <h2>Find this key</h2><span class="mini-count" id="keyCount">Key 1 of 10</span>
+            </div>
+            <div class="mode-options" id="keyModes"><button class="mode-btn selected" data-row="home">Home
+                row</button><button class="mode-btn" data-row="top">Top row</button><button class="mode-btn"
+                data-row="bottom">Bottom row</button><button class="mode-btn" data-row="all">All letters</button></div>
+            <div class="target-box">
+              <div class="target-label">Find and press</div>
+              <div class="target-key" id="keyTarget">F</div>
+              <div class="target-hint" id="keyHint">Left index finger · Home row</div>
+            </div>
+            <label class="type-label" for="keyInput">Type the letter here</label><input id="keyInput"
+              class="typing-input" type="text" maxlength="1" autocomplete="off" autocapitalize="off" spellcheck="false"
+              placeholder="Press the key…" aria-describedby="keyFieldNote">
+            <div class="field-note" id="keyFieldNote">You can use your physical keyboard or tap the box and type.</div>
+            <div class="feedback" id="keyFeedback" role="status" aria-live="polite">Ready when you are!</div>
+            <div class="action-row"><button class="btn btn-primary" id="nextKey">Skip this key →</button><button
+                class="btn btn-soft" id="repeatKey">🔊 Hear letter</button></div>
+            <div class="keyboard-wrap">
+              <div class="keyboard-title"><span>KEYBOARD MAP</span><span>Highlighted key = your target</span></div>
+              <div class="keyboard" id="keyKeyboard" aria-label="Visual keyboard"></div>
+            </div>
+          </section>
+          <aside class="panel side-panel">
+            <h3>Your explorer stats</h3>
+            <p>Every new key you try gets added to your adventure log.</p>
+            <div class="side-stat-grid">
+              <div class="side-stat"><strong id="keysThisRound">0</strong><span>FOUND THIS ROUND</span></div>
+              <div class="side-stat"><strong id="keysTotal">0</strong><span>UNIQUE KEYS</span></div>
+              <div class="side-stat"><strong id="keyAccuracy">—</strong><span>ROUND ACCURACY</span></div>
+              <div class="side-stat"><strong id="keyStars">0</strong><span>STARS EARNED</span></div>
+            </div>
+            <div class="tip"><strong>🖐️ Finger tip</strong>Keep your wrists relaxed and use a light touch. You do not
+              need to press hard.</div>
+            <div class="action-row"><button class="btn btn-soft btn-small" id="resetKeyRound">Restart round ↻</button>
+            </div>
+          </aside>
+        </div>
+      </section>
 
-    <section id="sentencesPage" class="page" aria-labelledby="sentenceHeading">
-      <div class="back-row"><button class="back-btn" data-home>← Home</button><span class="crumb">Sentence Quest / Reading and typing</span></div>
-      <div class="activity-title"><div class="section-kicker">Mission 3 · Put words together</div><h1 id="sentenceHeading">Sentence Quest 📚</h1><p>Type the whole sentence. Watch the highlighted character, and remember to use spaces and punctuation.</p></div>
-      <div class="game-layout"><section class="panel play-panel"><div class="panel-head"><h2>Copy the sentence</h2><span class="mini-count" id="sentenceCount">Quest 1 of 8</span></div><div class="target-box" style="min-height:155px"><div class="target-label">Your sentence</div><div id="sentenceDisplay" class="sentence-quote" aria-label="Sentence to type"></div><div class="target-hint" id="sentenceHint">The next character is highlighted.</div></div>
-        <div class="progress-track" aria-label="Sentence progress"><div class="progress-fill" id="sentenceProgress"></div></div>
-        <label class="type-label" for="sentenceInput">Type the sentence here</label><input id="sentenceInput" class="typing-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Start typing the sentence…"><div class="field-note" id="sentenceNote">You can fix mistakes with Backspace before finishing.</div><div class="feedback" id="sentenceFeedback" role="status" aria-live="polite">Ready for your first sentence!</div>
-        <div class="action-row"><button class="btn btn-primary" id="nextSentence">Next sentence →</button><button class="btn btn-soft" id="restartSentence">Start again ↻</button></div>
-      </section><aside class="panel side-panel"><h3>Story keeper</h3><p>Careful typing helps the story make sense.</p><div class="side-stat-grid"><div class="side-stat"><strong id="sentenceDone">0</strong><span>SENTENCES DONE</span></div><div class="side-stat"><strong id="sentenceChars">0</strong><span>CHARACTERS TYPED</span></div><div class="side-stat"><strong id="sentenceAccuracy">—</strong><span>CHARACTER ACCURACY</span></div><div class="side-stat"><strong id="sentenceStars">0</strong><span>STARS EARNED</span></div></div><div class="tip"><strong>📚 Tiny reading tip</strong>Spaces are characters too! Tap the space bar once between words. Look for commas and full stops.</div></aside></div>
-    </section>
-  </main>
-  <footer class="footer">Made for practice, curiosity, and happy little victories. ✨</footer>
-</div>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>
-(() => {
-'use strict';
-const $ = id => document.getElementById(id);
-const storeKey = 'keyQuestProgress_v1';
-const defaultStats = {stars:0,words:0,keys:[],sentences:0,chars:0,bestWpm:0,sprintRounds:0};
-let stats = loadStats();
-function loadStats(){try{const raw=JSON.parse(localStorage.getItem(storeKey)||'{}');return {...defaultStats,...raw,keys:Array.isArray(raw.keys)?raw.keys:[]};}catch(e){return {...defaultStats};}}
-function saveStats(){try{localStorage.setItem(storeKey,JSON.stringify(stats));}catch(e){}}
-function updateStats(){ $('topStars').textContent=stats.stars; $('topWords').textContent=stats.words; $('homeKeys').textContent=`${stats.keys.length} / 26`; $('keyProgress').style.width=`${Math.min(100,stats.keys.length/26*100)}%`; $('homeWords').textContent=stats.words; $('wordProgress').style.width=`${Math.min(100,stats.words/100*100)}%`; $('keysTotal').textContent=stats.keys.length; $('sprintBest').textContent=stats.bestWpm; $('badges').innerHTML=[{ok:stats.words>=10,text:'🌟 First 10 words'},{ok:stats.keys.length>=10,text:'⌨️ 10 keys explored'},{ok:stats.sentences>=1,text:'📚 Sentence star'}].map(b=>`<span class="badge ${b.ok?'':'locked'}">${b.ok?'✓':'🔒'} ${b.text}</span>`).join('');saveStats();}
-function toast(msg){const el=$('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove('show'),1900);}
-function showPage(name){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));const target=$(name+'Page');if(target)target.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});if(name==='keys')setTimeout(()=>$('keyInput').focus({preventScroll:true}),80);if(name==='sprint'){if(sprintRunning){}else setTimeout(()=>$('wordInput').focus({preventScroll:true}),80);}if(name==='sentences')setTimeout(()=>$('sentenceInput').focus({preventScroll:true}),80);}
-document.querySelectorAll('[data-open]').forEach(b=>b.addEventListener('click',()=>{const p=b.dataset.open;showPage(p==='sentences'?'sentences':p);}));document.querySelectorAll('[data-home]').forEach(b=>b.addEventListener('click',()=>showPage('home')));$('homeButton').addEventListener('click',()=>showPage('home'));$('brandHome').addEventListener('click',e=>{e.preventDefault();showPage('home');});
-const layouts=[['1','2','3','4','5','6','7','8','9','0'],['Q','W','E','R','T','Y','U','I','O','P'],['A','S','D','F','G','H','J','K','L',';'],['Z','X','C','V','B','N','M',',','.','/']];
-function renderKeyboard(target,done=[]){const root=$('keyKeyboard');root.innerHTML='';layouts.forEach((r,ri)=>{const row=document.createElement('div');row.className='key-row';r.forEach(k=>{const el=document.createElement('div');el.className='key'+(k===target?' active':'')+(done.includes(k)?' done':'');el.textContent=k;el.setAttribute('aria-hidden','true');row.appendChild(el);});root.appendChild(row);});const row=document.createElement('div');row.className='key-row';const ctrl=document.createElement('div');ctrl.className='key wide';ctrl.textContent='shift';row.appendChild(ctrl);const space=document.createElement('div');space.className='key space';space.textContent='space';row.appendChild(space);const enter=document.createElement('div');enter.className='key wide';enter.textContent='enter';row.appendChild(enter);root.appendChild(row);}
-const keyRows={home:'ASDFGHJKL;'.split(''),top:'QWERTYUIOP'.split(''),bottom:'ZXCVBNM'.split(''),all:'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')};
-let keyMode='home',keyList=[],keyIndex=0,keyCorrect=0,keyTries=0,keyRoundStar=0;const keyFinger={A:'Left pinky',S:'Left ring finger',D:'Left middle finger',F:'Left index finger',G:'Left index finger',H:'Right index finger',J:'Right index finger',K:'Right middle finger',L:'Right ring finger',';':'Right pinky',Q:'Left pinky',W:'Left ring finger',E:'Left middle finger',R:'Left index finger',T:'Left index finger',Y:'Right index finger',U:'Right index finger',I:'Right middle finger',O:'Right ring finger',P:'Right pinky',Z:'Left pinky',X:'Left ring finger',C:'Left middle finger',V:'Left index finger',B:'Left index finger',N:'Right index finger',M:'Right index finger'};
-function shuffle(arr){const out=arr.slice();for(let i=out.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[out[i],out[j]]=[out[j],out[i]];}return out;}
-function startKeyRound(){keyList=shuffle(keyRows[keyMode]);keyIndex=0;keyCorrect=0;keyTries=0;keyRoundStar=0;$('keyInput').value='';$('keyFeedback').textContent='Ready when you are!';$('keyFeedback').className='feedback';showTargetKey();}
-function showTargetKey(){if(keyIndex>=keyList.length){const acc=keyTries?Math.round(keyCorrect/keyTries*100):100;$('keyTarget').textContent='🎉';$('keyHint').textContent='Safari complete! Great exploring.';$('keyCount').textContent='Round complete';$('keyInput').disabled=true;$('keyFeedback').textContent=`You found ${keyCorrect} keys with ${acc}% accuracy. Start another round to keep exploring!`;$('keyFeedback').className='feedback good';$('nextKey').textContent='New round ↻';$('keysThisRound').textContent=keyCorrect;$('keyAccuracy').textContent=acc+'%';return;}
-$('keyInput').disabled=false;const k=keyList[keyIndex];$('keyTarget').textContent=k;$('keyHint').textContent=(keyFinger[k]||'Use a comfortable finger')+' · '+({home:'Home row',top:'Top row',bottom:'Bottom row',all:'All letters'})[keyMode];$('keyCount').textContent=`Key ${keyIndex+1} of ${keyList.length}`;$('keyInput').value='';$('keyInput').focus({preventScroll:true});renderKeyboard(k,stats.keys);$('keysThisRound').textContent=keyCorrect;$('keyAccuracy').textContent=keyTries?Math.round(keyCorrect/keyTries*100)+'%':'—';$('keyStars').textContent=keyRoundStar;}
-function keySubmit(value){if(keyIndex>=keyList.length||!value)return;const typed=value.slice(-1).toUpperCase(),target=keyList[keyIndex];$('keyInput').value='';keyTries++;if(typed===target){keyCorrect++;keyRoundStar++;stats.stars++;if(/[A-Z]/.test(target)&&!stats.keys.includes(target))stats.keys.push(target);$('keyFeedback').textContent=['Nice finding! ✨','You got it! 🌟','Great finger control! 🎉','Key explorer! 🧭'][Math.floor(Math.random()*4)];$('keyFeedback').className='feedback good';renderKeyboard(target,stats.keys);updateStats();$('keysThisRound').textContent=keyCorrect;$('keyStars').textContent=keyRoundStar;setTimeout(()=>{keyIndex++;showTargetKey();},350);}else{$('keyFeedback').textContent=`Almost! Look for ${target}, then try again.`;$('keyFeedback').className='feedback bad';} $('keyAccuracy').textContent=Math.round(keyCorrect/keyTries*100)+'%';}
-$('keyInput').addEventListener('input',e=>keySubmit(e.target.value));$('keyInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();}});$('nextKey').addEventListener('click',()=>{if(keyIndex>=keyList.length){startKeyRound();}else{keyIndex++;showTargetKey();toast('On to the next key!');}});$('repeatKey').addEventListener('click',()=>{const k=keyList[keyIndex]||'';if(!k)return;if('speechSynthesis' in window){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(k===';'?'semicolon':k);u.rate=.75;speechSynthesis.speak(u);}else toast('Letter: '+k);});$('resetKeyRound').addEventListener('click',startKeyRound);document.querySelectorAll('[data-row]').forEach(b=>b.addEventListener('click',()=>{keyMode=b.dataset.row;document.querySelectorAll('[data-row]').forEach(x=>x.classList.toggle('selected',x===b));startKeyRound();}));
+      <section id="sprintPage" class="page" aria-labelledby="sprintHeading">
+        <div class="back-row"><button class="back-btn" data-home>← Home</button><span class="crumb">Word Rocket / Timed
+            challenge</span></div>
+        <div class="activity-title">
+          <div class="section-kicker">Mission 2 · Speed with care</div>
+          <h1 id="sprintHeading">Word Rocket 🚀</h1>
+          <p>Type each word correctly to launch it into space. The countdown begins when you start typing.</p>
+        </div>
+        <div class="game-layout">
+          <section class="panel play-panel">
+            <div class="panel-head">
+              <h2>Ready for liftoff?</h2><span class="mini-count"><span id="timerText">30</span>s left</span>
+            </div>
+            <div class="timer-bar">
+              <div class="timer-fill" id="timerFill"></div>
+            </div>
+            <div id="sprintPlay">
+              <div class="target-box word-target">
+                <div class="target-label">Type this word</div>
+                <div class="target-key" id="wordTarget">sunshine</div>
+                <div class="target-hint" id="wordHint">One word at a time · accuracy first!</div>
+              </div>
+              <label class="type-label" for="wordInput">Your rocket controls</label><input id="wordInput"
+                class="typing-input word-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false"
+                placeholder="Type the word…" aria-describedby="wordFieldNote">
+              <div class="field-note" id="wordFieldNote">Start typing to begin the 30-second round.</div>
+              <div class="feedback" id="wordFeedback" role="status" aria-live="polite">Ready for liftoff!</div>
+              <div class="action-row"><button class="btn btn-soft" id="skipWord">Skip word →</button></div>
+            </div>
+            <div class="result hidden" id="sprintResult">
+              <div class="result-icon" id="resultIcon">🚀</div>
+              <h2 id="resultTitle">Great flying!</h2>
+              <p id="resultMessage">You did it!</p>
+              <div class="result-score">
+                <div class="result-chip"><strong id="resultWords">0</strong><span>WORDS</span></div>
+                <div class="result-chip"><strong id="resultAccuracy">0%</strong><span>ACCURACY</span></div>
+                <div class="result-chip"><strong id="resultWpm">0</strong><span>WORDS / MIN</span></div>
+              </div><button class="btn btn-primary" id="playAgain">Fly again ↻</button>
+            </div>
+          </section>
+          <aside class="panel side-panel">
+            <h3>Mission dashboard</h3>
+            <p>Can you beat your own best? There is no score for rushing past mistakes.</p>
+            <div class="side-stat-grid">
+              <div class="side-stat"><strong id="sprintWords">0</strong><span>WORDS THIS ROUND</span></div>
+              <div class="side-stat"><strong id="sprintBest">0</strong><span>PERSONAL BEST WPM</span></div>
+              <div class="side-stat"><strong id="sprintErrors">0</strong><span>MISTAKES</span></div>
+              <div class="side-stat"><strong id="sprintStars">0</strong><span>STARS EARNED</span></div>
+            </div>
+            <div class="tip"><strong>🚀 Rocket rule</strong>Accuracy matters more than speed. Keep your eyes on the
+              word, and use Backspace to fix a typo.</div>
+          </aside>
+        </div>
+      </section>
 
-let words=[];let wordQueue=[],wordPos=0,sprintRunning=false,sprintEnded=false,sprintTimer=null,sprintStart=0,sprintTimeLeft=30,sprintCorrect=0,sprintErrors=0,sprintTyped=0,sprintStreak=0,wordPrevLen=0;
-function nextWord(){if(wordPos>=wordQueue.length){wordQueue=wordQueue.concat(shuffle(words));}return wordQueue[wordPos++];}
-function setWord(){const w=nextWord();wordPrevLen=0;$('wordTarget').textContent=w;$('wordInput').value='';$('wordFeedback').textContent='';$('wordFeedback').className='feedback';$('wordHint').textContent='One word at a time · accuracy first!';$('wordInput').focus({preventScroll:true});}
-function startSprint(){clearInterval(sprintTimer);sprintRunning=true;sprintEnded=false;wordQueue=shuffle(words);wordPos=0;sprintTimeLeft=30;sprintCorrect=0;sprintErrors=0;sprintTyped=0;sprintStreak=0;sprintStart=0;$('sprintPlay').classList.remove('hidden');$('sprintResult').classList.add('hidden');$('timerText').textContent='30';$('timerFill').style.width='100%';$('wordFieldNote').textContent='The clock starts when you type your first character.';$('sprintWords').textContent='0';$('sprintErrors').textContent='0';$('sprintStars').textContent='0';setWord();}
-function sprintTick(){if(!sprintRunning)return;sprintTimeLeft=Math.max(0,30-(Date.now()-sprintStart)/1000);$('timerText').textContent=Math.ceil(sprintTimeLeft);$('timerFill').style.width=(sprintTimeLeft/30*100)+'%';if(sprintTimeLeft<=0)endSprint();}
-function endSprint(){if(sprintEnded)return;sprintRunning=false;sprintEnded=true;clearInterval(sprintTimer);const elapsed=Math.max(1,(Date.now()-sprintStart)/1000);const wpm=Math.round(sprintCorrect/(elapsed/60));const accuracy=sprintTyped?Math.round(Math.max(0,(sprintTyped-sprintErrors)/sprintTyped)*100):100;const stars=Math.max(1,Math.floor(sprintCorrect/3)+(accuracy>=90?1:0));stats.words+=sprintCorrect;stats.stars+=stars;stats.bestWpm=Math.max(stats.bestWpm,wpm);stats.sprintRounds++;updateStats();$('sprintPlay').classList.add('hidden');$('sprintResult').classList.remove('hidden');$('resultIcon').textContent=sprintCorrect>=15?'🏆':sprintCorrect>=7?'🚀':'🌱';$('resultTitle').textContent=sprintCorrect>=15?'Superstar typist!':sprintCorrect>=7?'Great flying!':'Practice makes progress!';$('resultMessage').textContent=`You typed ${sprintCorrect} ${sprintCorrect===1?'word':'words'} in 30 seconds. Every round helps your fingers learn.`;$('resultWords').textContent=sprintCorrect;$('resultAccuracy').textContent=accuracy+'%';$('resultWpm').textContent=wpm;$('sprintStars').textContent=stars;}
-$('wordInput').addEventListener('input',e=>{if(sprintEnded)return;const val=e.target.value;if(!sprintRunning)return;if(!sprintStart){sprintStart=Date.now();sprintTimer=setInterval(sprintTick,100);$('wordFieldNote').textContent='Clock is running — type each word correctly to launch it!';}const target=$('wordTarget').textContent;for(let i=wordPrevLen;i<val.length;i++){sprintTyped++;if((val[i]||'').toLowerCase()!==(target[i]||''))sprintErrors++;}wordPrevLen=val.length;$('sprintErrors').textContent=sprintErrors;if(val.toLowerCase()===target){sprintCorrect++;sprintStreak++;$('sprintWords').textContent=sprintCorrect;$('sprintStars').textContent=Math.floor(sprintCorrect/3);$('wordFeedback').textContent=['Zoom! 🚀','Perfect launch! ✨','Word landed! 🌟'][Math.floor(Math.random()*3)];$('wordFeedback').className='feedback good';setWord();}else if(val.length&&target.slice(0,val.length).toLowerCase()!==val.toLowerCase()){$('wordFeedback').textContent='Check the letters — Backspace can fix a typo.';$('wordFeedback').className='feedback bad';}else if(val.length){$('wordFeedback').textContent='Nice start. Keep going!';$('wordFeedback').className='feedback good';}});
-$('wordInput').addEventListener('keydown',e=>{if(e.key===' '){e.preventDefault();}});
-$('playAgain').addEventListener('click',startSprint);$('skipWord').addEventListener('click',()=>{if(!sprintRunning||sprintEnded)return;if(!sprintStart){toast('Start typing to begin the timer before skipping.');return;}sprintErrors++;$('sprintErrors').textContent=sprintErrors;setWord();});
+      <section id="sentencesPage" class="page" aria-labelledby="sentenceHeading">
+        <div class="back-row"><button class="back-btn" data-home>← Home</button><span class="crumb">Sentence Quest /
+            Reading and typing</span></div>
+        <div class="activity-title">
+          <div class="section-kicker">Mission 3 · Put words together</div>
+          <h1 id="sentenceHeading">Sentence Quest 📚</h1>
+          <p>Type the whole sentence. Watch the highlighted character, and remember to use spaces and punctuation.</p>
+        </div>
+        <div class="game-layout">
+          <section class="panel play-panel">
+            <div class="panel-head">
+              <h2>Copy the sentence</h2><span class="mini-count" id="sentenceCount">Quest 1 of 8</span>
+            </div>
+            <div class="target-box" style="min-height:155px">
+              <div class="target-label">Your sentence</div>
+              <div id="sentenceDisplay" class="sentence-quote" aria-label="Sentence to type"></div>
+              <div class="target-hint" id="sentenceHint">The next character is highlighted.</div>
+            </div>
+            <div class="progress-track" aria-label="Sentence progress">
+              <div class="progress-fill" id="sentenceProgress"></div>
+            </div>
+            <label class="type-label" for="sentenceInput">Type the sentence here</label><input id="sentenceInput"
+              class="typing-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false"
+              placeholder="Start typing the sentence…">
+            <div class="field-note" id="sentenceNote">You can fix mistakes with Backspace before finishing.</div>
+            <div class="feedback" id="sentenceFeedback" role="status" aria-live="polite">Ready for your first sentence!
+            </div>
+            <div class="action-row"><button class="btn btn-primary" id="nextSentence">Next sentence →</button><button
+                class="btn btn-soft" id="restartSentence">Start again ↻</button></div>
+          </section>
+          <aside class="panel side-panel">
+            <h3>Story keeper</h3>
+            <p>Careful typing helps the story make sense.</p>
+            <div class="side-stat-grid">
+              <div class="side-stat"><strong id="sentenceDone">0</strong><span>SENTENCES DONE</span></div>
+              <div class="side-stat"><strong id="sentenceChars">0</strong><span>CHARACTERS TYPED</span></div>
+              <div class="side-stat"><strong id="sentenceAccuracy">—</strong><span>CHARACTER ACCURACY</span></div>
+              <div class="side-stat"><strong id="sentenceStars">0</strong><span>STARS EARNED</span></div>
+            </div>
+            <div class="tip"><strong>📚 Tiny reading tip</strong>Spaces are characters too! Tap the space bar once
+              between words. Look for commas and full stops.</div>
+          </aside>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">Made for practice, curiosity, and happy little victories. ✨</footer>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script>
+    (() => {
+      'use strict';
+      const $ = id => document.getElementById(id);
+      const storeKey = 'keyQuestProgress_v1';
+      const defaultStats = { stars: 0, words: 0, keys: [], sentences: 0, chars: 0, bestWpm: 0, sprintRounds: 0 };
+      let stats = loadStats();
+      function loadStats() { try { const raw = JSON.parse(localStorage.getItem(storeKey) || '{}'); return { ...defaultStats, ...raw, keys: Array.isArray(raw.keys) ? raw.keys : [] }; } catch (e) { return { ...defaultStats }; } }
+      function saveStats() { try { localStorage.setItem(storeKey, JSON.stringify(stats)); } catch (e) { } }
+      function updateStats() { $('topStars').textContent = stats.stars; $('topWords').textContent = stats.words; $('homeKeys').textContent = `${stats.keys.length} / 26`; $('keyProgress').style.width = `${Math.min(100, stats.keys.length / 26 * 100)}%`; $('homeWords').textContent = stats.words; $('wordProgress').style.width = `${Math.min(100, stats.words / 100 * 100)}%`; $('keysTotal').textContent = stats.keys.length; $('sprintBest').textContent = stats.bestWpm; $('badges').innerHTML = [{ ok: stats.words >= 10, text: '🌟 First 10 words' }, { ok: stats.keys.length >= 10, text: '⌨️ 10 keys explored' }, { ok: stats.sentences >= 1, text: '📚 Sentence star' }].map(b => `<span class="badge ${b.ok ? '' : 'locked'}">${b.ok ? '✓' : '🔒'} ${b.text}</span>`).join(''); saveStats(); }
+      function toast(msg) { const el = $('toast'); el.textContent = msg; el.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove('show'), 1900); }
+      function showPage(name) { document.querySelectorAll('.page').forEach(p => p.classList.remove('active')); const target = $(name + 'Page'); if (target) target.classList.add('active'); window.scrollTo({ top: 0, behavior: 'smooth' }); if (name === 'keys') setTimeout(() => $('keyInput').focus({ preventScroll: true }), 80); if (name === 'sprint') { if (sprintRunning) { } else setTimeout(() => $('wordInput').focus({ preventScroll: true }), 80); } if (name === 'sentences') setTimeout(() => $('sentenceInput').focus({ preventScroll: true }), 80); }
+      document.querySelectorAll('[data-open]').forEach(b => b.addEventListener('click', () => { const p = b.dataset.open; showPage(p === 'sentences' ? 'sentences' : p); })); document.querySelectorAll('[data-home]').forEach(b => b.addEventListener('click', () => showPage('home'))); $('homeButton').addEventListener('click', () => showPage('home')); $('brandHome').addEventListener('click', e => { e.preventDefault(); showPage('home'); });
+      const layouts = [['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'], ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'], ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ';'], ['Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '/']];
+      function renderKeyboard(target, done = []) { const root = $('keyKeyboard'); root.innerHTML = ''; layouts.forEach((r, ri) => { const row = document.createElement('div'); row.className = 'key-row'; r.forEach(k => { const el = document.createElement('div'); el.className = 'key' + (k === target ? ' active' : '') + (done.includes(k) ? ' done' : ''); el.textContent = k; el.setAttribute('aria-hidden', 'true'); row.appendChild(el); }); root.appendChild(row); }); const row = document.createElement('div'); row.className = 'key-row'; const ctrl = document.createElement('div'); ctrl.className = 'key wide'; ctrl.textContent = 'shift'; row.appendChild(ctrl); const space = document.createElement('div'); space.className = 'key space'; space.textContent = 'space'; row.appendChild(space); const enter = document.createElement('div'); enter.className = 'key wide'; enter.textContent = 'enter'; row.appendChild(enter); root.appendChild(row); }
+      const keyRows = { home: 'ASDFGHJKL;'.split(''), top: 'QWERTYUIOP'.split(''), bottom: 'ZXCVBNM'.split(''), all: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('') };
+      let keyMode = 'home', keyList = [], keyIndex = 0, keyCorrect = 0, keyTries = 0, keyRoundStar = 0; const keyFinger = { A: 'Left pinky', S: 'Left ring finger', D: 'Left middle finger', F: 'Left index finger', G: 'Left index finger', H: 'Right index finger', J: 'Right index finger', K: 'Right middle finger', L: 'Right ring finger', ';': 'Right pinky', Q: 'Left pinky', W: 'Left ring finger', E: 'Left middle finger', R: 'Left index finger', T: 'Left index finger', Y: 'Right index finger', U: 'Right index finger', I: 'Right middle finger', O: 'Right ring finger', P: 'Right pinky', Z: 'Left pinky', X: 'Left ring finger', C: 'Left middle finger', V: 'Left index finger', B: 'Left index finger', N: 'Right index finger', M: 'Right index finger' };
+      function shuffle(arr) { const out = arr.slice(); for (let i = out.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[out[i], out[j]] = [out[j], out[i]]; } return out; }
+      function startKeyRound() { keyList = shuffle(keyRows[keyMode]); keyIndex = 0; keyCorrect = 0; keyTries = 0; keyRoundStar = 0; $('keyInput').value = ''; $('keyFeedback').textContent = 'Ready when you are!'; $('keyFeedback').className = 'feedback'; showTargetKey(); }
+      function showTargetKey() {
+        if (keyIndex >= keyList.length) { const acc = keyTries ? Math.round(keyCorrect / keyTries * 100) : 100; $('keyTarget').textContent = '🎉'; $('keyHint').textContent = 'Safari complete! Great exploring.'; $('keyCount').textContent = 'Round complete'; $('keyInput').disabled = true; $('keyFeedback').textContent = `You found ${keyCorrect} keys with ${acc}% accuracy. Start another round to keep exploring!`; $('keyFeedback').className = 'feedback good'; $('nextKey').textContent = 'New round ↻'; $('keysThisRound').textContent = keyCorrect; $('keyAccuracy').textContent = acc + '%'; return; }
+        $('keyInput').disabled = false; const k = keyList[keyIndex]; $('keyTarget').textContent = k; $('keyHint').textContent = (keyFinger[k] || 'Use a comfortable finger') + ' · ' + ({ home: 'Home row', top: 'Top row', bottom: 'Bottom row', all: 'All letters' })[keyMode]; $('keyCount').textContent = `Key ${keyIndex + 1} of ${keyList.length}`; $('keyInput').value = ''; $('keyInput').focus({ preventScroll: true }); renderKeyboard(k, stats.keys); $('keysThisRound').textContent = keyCorrect; $('keyAccuracy').textContent = keyTries ? Math.round(keyCorrect / keyTries * 100) + '%' : '—'; $('keyStars').textContent = keyRoundStar;
+      }
+      function keySubmit(value) { if (keyIndex >= keyList.length || !value) return; const typed = value.slice(-1).toUpperCase(), target = keyList[keyIndex]; $('keyInput').value = ''; keyTries++; if (typed === target) { keyCorrect++; keyRoundStar++; stats.stars++; if (/[A-Z]/.test(target) && !stats.keys.includes(target)) stats.keys.push(target); $('keyFeedback').textContent = ['Nice finding! ✨', 'You got it! 🌟', 'Great finger control! 🎉', 'Key explorer! 🧭'][Math.floor(Math.random() * 4)]; $('keyFeedback').className = 'feedback good'; renderKeyboard(target, stats.keys); updateStats(); $('keysThisRound').textContent = keyCorrect; $('keyStars').textContent = keyRoundStar; setTimeout(() => { keyIndex++; showTargetKey(); }, 350); } else { $('keyFeedback').textContent = `Almost! Look for ${target}, then try again.`; $('keyFeedback').className = 'feedback bad'; } $('keyAccuracy').textContent = Math.round(keyCorrect / keyTries * 100) + '%'; }
+      $('keyInput').addEventListener('input', e => keySubmit(e.target.value)); $('keyInput').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); } }); $('nextKey').addEventListener('click', () => { if (keyIndex >= keyList.length) { startKeyRound(); } else { keyIndex++; showTargetKey(); toast('On to the next key!'); } }); $('repeatKey').addEventListener('click', () => { const k = keyList[keyIndex] || ''; if (!k) return; if ('speechSynthesis' in window) { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(k === ';' ? 'semicolon' : k); u.rate = .75; speechSynthesis.speak(u); } else toast('Letter: ' + k); }); $('resetKeyRound').addEventListener('click', startKeyRound); document.querySelectorAll('[data-row]').forEach(b => b.addEventListener('click', () => { keyMode = b.dataset.row; document.querySelectorAll('[data-row]').forEach(x => x.classList.toggle('selected', x === b)); startKeyRound(); }));
 
-let sentenceList=[];let sentenceIndex=0,sentenceCompleted=new Set(),sentenceTries=0,sentenceMatched=0,sentenceStartedAt=0,sentencePrevLen=0;
-function renderSentence(){const sentence=sentenceList[sentenceIndex];const typed=$('sentenceInput').value;let html='';for(let i=0;i<sentence.length;i++){const safe=sentence[i]===' '?'&nbsp;':escapeHtml(sentence[i]);if(i<typed.length){html+=`<span class="${typed[i]===sentence[i]?'typed':'wrong-char'}">${safe}</span>`;}else if(i===typed.length){html+=`<span class="next-char">${safe}</span>`;}else{html+=safe;}}$('sentenceDisplay').innerHTML=html;$('sentenceCount').textContent=`Quest ${sentenceIndex+1} of ${sentenceList.length}`;$('sentenceProgress').style.width=Math.min(100,typed.length/sentence.length*100)+'%';$('sentenceDone').textContent=Math.max(sentenceCompleted.size,stats.sentences);$('sentenceChars').textContent=stats.chars;$('sentenceStars').textContent=stats.sentences;$('sentenceAccuracy').textContent=sentenceTries?Math.round(sentenceMatched/sentenceTries*100)+'%':'—';}
-function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-function nextSentence(){sentenceIndex=(sentenceIndex+1)%sentenceList.length;$('sentenceInput').value='';sentencePrevLen=0;$('sentenceInput').disabled=false;$('sentenceFeedback').textContent='New sentence, new adventure!';$('sentenceFeedback').className='feedback';sentenceTries=0;sentenceMatched=0;sentenceStartedAt=0;renderSentence();$('sentenceInput').focus({preventScroll:true});}
-$('sentenceInput').addEventListener('input',e=>{const val=e.target.value,sentence=sentenceList[sentenceIndex];if(!sentenceStartedAt&&val.length)sentenceStartedAt=Date.now();for(let i=sentencePrevLen;i<val.length;i++){sentenceTries++;stats.chars++;if(val[i]===sentence[i])sentenceMatched++;}sentencePrevLen=val.length;renderSentence();if(val===sentence){if(!sentenceCompleted.has(sentenceIndex)){sentenceCompleted.add(sentenceIndex);stats.sentences++;stats.stars+=3;stats.words+=sentence.split(/\s+/).length;updateStats();}$('sentenceInput').disabled=true;$('sentenceFeedback').textContent='Sentence complete! Beautifully done! 🌟';$('sentenceFeedback').className='feedback good';$('sentenceNote').textContent='You earned 3 stars. Try another sentence!';$('sentenceStars').textContent=stats.sentences;renderSentence();}else if(val&& !sentence.startsWith(val)){$('sentenceFeedback').textContent='Check the highlighted character. Backspace can fix it!';$('sentenceFeedback').className='feedback bad';}else{$('sentenceFeedback').textContent='Keep going — you’re on the right track!';$('sentenceFeedback').className='feedback good';}saveStats();});$('nextSentence').addEventListener('click',nextSentence);$('restartSentence').addEventListener('click',()=>{$('sentenceInput').value='';sentencePrevLen=0;$('sentenceInput').disabled=false;$('sentenceFeedback').textContent='Give it another try!';$('sentenceFeedback').className='feedback';sentenceTries=0;sentenceMatched=0;sentenceStartedAt=0;renderSentence();$('sentenceInput').focus({preventScroll:true});});
-// Keep inputs usable after tapping their play areas and allow Escape as a quick route home.
-document.addEventListener('keydown',e=>{if(e.key==='Escape')showPage('home');});
-async function loadEditableContent(){
-  const response=await fetch('./content.json',{cache:'no-store'});
-  if(!response.ok)throw new Error('Could not load content.json (HTTP '+response.status+').');
-  const data=await response.json();
-  if(!data||!Array.isArray(data.words)||!data.words.length)throw new Error('content.json must contain a non-empty "words" array.');
-  if(!Array.isArray(data.sentences)||!data.sentences.length)throw new Error('content.json must contain a non-empty "sentences" array.');
-  words=data.words.filter(item=>typeof item==='string'&&item.trim()).map(item=>item.trim());
-  sentenceList=data.sentences.filter(item=>typeof item==='string'&&item.trim()).map(item=>item.trim());
-  if(!words.length)throw new Error('The words list has no usable words.');
-  if(!sentenceList.length)throw new Error('The sentences list has no usable sentences.');
-}
-(async()=>{
-  try{
-    await loadEditableContent();
-    startKeyRound();startSprint();
-    $('wordFieldNote').textContent='Start typing to begin the 30-second round.';
-    $('sprintPlay').classList.remove('hidden');$('sprintResult').classList.add('hidden');$('wordInput').value='';
-    updateStats();renderSentence();
-  }catch(error){
-    console.error('Key Quest content loading failed:',error);
-    const el=$('toast');
-    el.textContent='Could not load editable content. Keep content.json beside index.html and run the game through GitHub Pages or a local web server. '+error.message;
-    el.classList.add('persistent','show');
-  }
-})();
-})();
-</script>
+      let words = []; let wordQueue = [], wordPos = 0, sprintRunning = false, sprintEnded = false, sprintTimer = null, sprintStart = 0, sprintTimeLeft = 30, sprintCorrect = 0, sprintErrors = 0, sprintTyped = 0, sprintStreak = 0, wordPrevLen = 0;
+      function nextWord() { if (wordPos >= wordQueue.length) { wordQueue = wordQueue.concat(shuffle(words)); } return wordQueue[wordPos++]; }
+      function setWord() { const w = nextWord(); wordPrevLen = 0; $('wordTarget').textContent = w; $('wordInput').value = ''; $('wordFeedback').textContent = ''; $('wordFeedback').className = 'feedback'; $('wordHint').textContent = 'One word at a time · accuracy first!'; $('wordInput').focus({ preventScroll: true }); }
+      function startSprint() { clearInterval(sprintTimer); sprintRunning = true; sprintEnded = false; wordQueue = shuffle(words); wordPos = 0; sprintTimeLeft = 30; sprintCorrect = 0; sprintErrors = 0; sprintTyped = 0; sprintStreak = 0; sprintStart = 0; $('sprintPlay').classList.remove('hidden'); $('sprintResult').classList.add('hidden'); $('timerText').textContent = '30'; $('timerFill').style.width = '100%'; $('wordFieldNote').textContent = 'The clock starts when you type your first character.'; $('sprintWords').textContent = '0'; $('sprintErrors').textContent = '0'; $('sprintStars').textContent = '0'; setWord(); }
+      function sprintTick() { if (!sprintRunning) return; sprintTimeLeft = Math.max(0, 30 - (Date.now() - sprintStart) / 1000); $('timerText').textContent = Math.ceil(sprintTimeLeft); $('timerFill').style.width = (sprintTimeLeft / 30 * 100) + '%'; if (sprintTimeLeft <= 0) endSprint(); }
+      function endSprint() { if (sprintEnded) return; sprintRunning = false; sprintEnded = true; clearInterval(sprintTimer); const elapsed = Math.max(1, (Date.now() - sprintStart) / 1000); const wpm = Math.round(sprintCorrect / (elapsed / 60)); const accuracy = sprintTyped ? Math.round(Math.max(0, (sprintTyped - sprintErrors) / sprintTyped) * 100) : 100; const stars = Math.max(1, Math.floor(sprintCorrect / 3) + (accuracy >= 90 ? 1 : 0)); stats.words += sprintCorrect; stats.stars += stars; stats.bestWpm = Math.max(stats.bestWpm, wpm); stats.sprintRounds++; updateStats(); $('sprintPlay').classList.add('hidden'); $('sprintResult').classList.remove('hidden'); $('resultIcon').textContent = sprintCorrect >= 15 ? '🏆' : sprintCorrect >= 7 ? '🚀' : '🌱'; $('resultTitle').textContent = sprintCorrect >= 15 ? 'Superstar typist!' : sprintCorrect >= 7 ? 'Great flying!' : 'Practice makes progress!'; $('resultMessage').textContent = `You typed ${sprintCorrect} ${sprintCorrect === 1 ? 'word' : 'words'} in 30 seconds. Every round helps your fingers learn.`; $('resultWords').textContent = sprintCorrect; $('resultAccuracy').textContent = accuracy + '%'; $('resultWpm').textContent = wpm; $('sprintStars').textContent = stars; }
+      $('wordInput').addEventListener('input', e => { if (sprintEnded) return; const val = e.target.value; if (!sprintRunning) return; if (!sprintStart) { sprintStart = Date.now(); sprintTimer = setInterval(sprintTick, 100); $('wordFieldNote').textContent = 'Clock is running — type each word correctly to launch it!'; } const target = $('wordTarget').textContent; for (let i = wordPrevLen; i < val.length; i++) { sprintTyped++; if ((val[i] || '').toLowerCase() !== (target[i] || '')) sprintErrors++; } wordPrevLen = val.length; $('sprintErrors').textContent = sprintErrors; if (val.toLowerCase() === target) { sprintCorrect++; sprintStreak++; $('sprintWords').textContent = sprintCorrect; $('sprintStars').textContent = Math.floor(sprintCorrect / 3); $('wordFeedback').textContent = ['Zoom! 🚀', 'Perfect launch! ✨', 'Word landed! 🌟'][Math.floor(Math.random() * 3)]; $('wordFeedback').className = 'feedback good'; setWord(); } else if (val.length && target.slice(0, val.length).toLowerCase() !== val.toLowerCase()) { $('wordFeedback').textContent = 'Check the letters — Backspace can fix a typo.'; $('wordFeedback').className = 'feedback bad'; } else if (val.length) { $('wordFeedback').textContent = 'Nice start. Keep going!'; $('wordFeedback').className = 'feedback good'; } });
+      $('wordInput').addEventListener('keydown', e => { if (e.key === ' ') { e.preventDefault(); } });
+      $('playAgain').addEventListener('click', startSprint); $('skipWord').addEventListener('click', () => { if (!sprintRunning || sprintEnded) return; if (!sprintStart) { toast('Start typing to begin the timer before skipping.'); return; } sprintErrors++; $('sprintErrors').textContent = sprintErrors; setWord(); });
+
+      let sentenceList = []; let sentenceIndex = 0, sentenceCompleted = new Set(), sentenceTries = 0, sentenceMatched = 0, sentenceStartedAt = 0, sentencePrevLen = 0;
+      function renderSentence() { const sentence = sentenceList[sentenceIndex]; const typed = $('sentenceInput').value; let html = ''; for (let i = 0; i < sentence.length; i++) { const safe = sentence[i] === ' ' ? '&nbsp;' : escapeHtml(sentence[i]); if (i < typed.length) { html += `<span class="${typed[i] === sentence[i] ? 'typed' : 'wrong-char'}">${safe}</span>`; } else if (i === typed.length) { html += `<span class="next-char">${safe}</span>`; } else { html += safe; } } $('sentenceDisplay').innerHTML = html; $('sentenceCount').textContent = `Quest ${sentenceIndex + 1} of ${sentenceList.length}`; $('sentenceProgress').style.width = Math.min(100, typed.length / sentence.length * 100) + '%'; $('sentenceDone').textContent = Math.max(sentenceCompleted.size, stats.sentences); $('sentenceChars').textContent = stats.chars; $('sentenceStars').textContent = stats.sentences; $('sentenceAccuracy').textContent = sentenceTries ? Math.round(sentenceMatched / sentenceTries * 100) + '%' : '—'; }
+      function escapeHtml(s) { return s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+      function nextSentence() { sentenceIndex = (sentenceIndex + 1) % sentenceList.length; $('sentenceInput').value = ''; sentencePrevLen = 0; $('sentenceInput').disabled = false; $('sentenceFeedback').textContent = 'New sentence, new adventure!'; $('sentenceFeedback').className = 'feedback'; sentenceTries = 0; sentenceMatched = 0; sentenceStartedAt = 0; renderSentence(); $('sentenceInput').focus({ preventScroll: true }); }
+      $('sentenceInput').addEventListener('input', e => { const val = e.target.value, sentence = sentenceList[sentenceIndex]; if (!sentenceStartedAt && val.length) sentenceStartedAt = Date.now(); for (let i = sentencePrevLen; i < val.length; i++) { sentenceTries++; stats.chars++; if (val[i] === sentence[i]) sentenceMatched++; } sentencePrevLen = val.length; renderSentence(); if (val === sentence) { if (!sentenceCompleted.has(sentenceIndex)) { sentenceCompleted.add(sentenceIndex); stats.sentences++; stats.stars += 3; stats.words += sentence.split(/\s+/).length; updateStats(); } $('sentenceInput').disabled = true; $('sentenceFeedback').textContent = 'Sentence complete! Beautifully done! 🌟'; $('sentenceFeedback').className = 'feedback good'; $('sentenceNote').textContent = 'You earned 3 stars. Try another sentence!'; $('sentenceStars').textContent = stats.sentences; renderSentence(); } else if (val && !sentence.startsWith(val)) { $('sentenceFeedback').textContent = 'Check the highlighted character. Backspace can fix it!'; $('sentenceFeedback').className = 'feedback bad'; } else { $('sentenceFeedback').textContent = 'Keep going — you’re on the right track!'; $('sentenceFeedback').className = 'feedback good'; } saveStats(); }); $('nextSentence').addEventListener('click', nextSentence); $('restartSentence').addEventListener('click', () => { $('sentenceInput').value = ''; sentencePrevLen = 0; $('sentenceInput').disabled = false; $('sentenceFeedback').textContent = 'Give it another try!'; $('sentenceFeedback').className = 'feedback'; sentenceTries = 0; sentenceMatched = 0; sentenceStartedAt = 0; renderSentence(); $('sentenceInput').focus({ preventScroll: true }); });
+      // Keep inputs usable after tapping their play areas and allow Escape as a quick route home.
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') showPage('home'); });
+      async function loadEditableContent() {
+        const response = await fetch('./content.json', { cache: 'no-store' });
+        if (!response.ok) throw new Error('Could not load content.json (HTTP ' + response.status + ').');
+        const data = await response.json();
+        if (!data || !Array.isArray(data.words) || !data.words.length) throw new Error('content.json must contain a non-empty "words" array.');
+        if (!Array.isArray(data.sentences) || !data.sentences.length) throw new Error('content.json must contain a non-empty "sentences" array.');
+        words = data.words.filter(item => typeof item === 'string' && item.trim()).map(item => item.trim());
+        sentenceList = data.sentences.filter(item => typeof item === 'string' && item.trim()).map(item => item.trim());
+        if (!words.length) throw new Error('The words list has no usable words.');
+        if (!sentenceList.length) throw new Error('The sentences list has no usable sentences.');
+      }
+      (async () => {
+        try {
+          await loadEditableContent();
+          startKeyRound(); startSprint();
+          $('wordFieldNote').textContent = 'Start typing to begin the 30-second round.';
+          $('sprintPlay').classList.remove('hidden'); $('sprintResult').classList.add('hidden'); $('wordInput').value = '';
+          updateStats(); renderSentence();
+        } catch (error) {
+          console.error('Key Quest content loading failed:', error);
+          const el = $('toast');
+          el.textContent = 'Could not load editable content. Keep content.json beside index.html and run the game through GitHub Pages or a local web server. ' + error.message;
+          el.classList.add('persistent', 'show');
+        }
+      })();
+    })();
+  </script>
 </body>
+
 </html>
