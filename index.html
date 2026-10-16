@@ -136,6 +136,34 @@
       font-weight: 800
     }
 
+    .games-hub-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 9px 14px;
+      border: 1px solid #f2c9dd;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #fff5cf, #ffe8f1);
+      box-shadow: 0 3px 0 #ecc8dc;
+      color: #694978;
+      font-size: 14px;
+      font-weight: 850;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: transform .12s, box-shadow .12s
+    }
+
+    .games-hub-link:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 0 #ecc8dc
+    }
+
+    .games-hub-link:focus-visible {
+      outline: 3px solid #ffb938;
+      outline-offset: 3px
+    }
+
     .hero {
       position: relative;
       overflow: hidden;
@@ -954,8 +982,12 @@
         display: none
       }
 
-      .quiet-btn {
-        padding: 9px 10px
+      .games-hub-link {
+        padding: 9px 11px
+      }
+
+      .games-hub-label {
+        display: none
       }
 
       .hero {
@@ -1110,8 +1142,10 @@
       </a>
       <div class="top-actions">
         <div class="pill-stat"><span>✨</span><span id="topStars">0</span> stars</div>
-        <div class="pill-stat stars-top"><span>🏆</span><span id="topWords">0</span> words</div><button
-          class="quiet-btn" id="homeButton">Home</button>
+        <div class="pill-stat stars-top"><span>🏆</span><span id="topWords">0</span> words</div>
+        <a class="games-hub-link" href="https://gurutaku.ca/coolgames/" aria-label="Back to Gurutaku Cool Games"
+          title="Back to Gurutaku Cool Games"><span aria-hidden="true">🎮</span><span class="games-hub-label">More
+            Games</span></a>
       </div>
     </header>
 
@@ -1350,7 +1384,7 @@
       function updateStats() { $('topStars').textContent = stats.stars; $('topWords').textContent = stats.words; $('homeKeys').textContent = `${stats.keys.length} / 26`; $('keyProgress').style.width = `${Math.min(100, stats.keys.length / 26 * 100)}%`; $('homeWords').textContent = stats.words; $('wordProgress').style.width = `${Math.min(100, stats.words / 100 * 100)}%`; $('keysTotal').textContent = stats.keys.length; $('sprintBest').textContent = stats.bestWpm; $('badges').innerHTML = [{ ok: stats.words >= 10, text: '🌟 First 10 words' }, { ok: stats.keys.length >= 10, text: '⌨️ 10 keys explored' }, { ok: stats.sentences >= 1, text: '📚 Sentence star' }].map(b => `<span class="badge ${b.ok ? '' : 'locked'}">${b.ok ? '✓' : '🔒'} ${b.text}</span>`).join(''); saveStats(); }
       function toast(msg) { const el = $('toast'); el.textContent = msg; el.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove('show'), 1900); }
       function showPage(name) { document.querySelectorAll('.page').forEach(p => p.classList.remove('active')); const target = $(name + 'Page'); if (target) target.classList.add('active'); window.scrollTo({ top: 0, behavior: 'smooth' }); if (name === 'keys') setTimeout(() => $('keyInput').focus({ preventScroll: true }), 80); if (name === 'sprint') { if (sprintRunning) { } else setTimeout(() => $('wordInput').focus({ preventScroll: true }), 80); } if (name === 'sentences') setTimeout(() => $('sentenceInput').focus({ preventScroll: true }), 80); }
-      document.querySelectorAll('[data-open]').forEach(b => b.addEventListener('click', () => { const p = b.dataset.open; showPage(p === 'sentences' ? 'sentences' : p); })); document.querySelectorAll('[data-home]').forEach(b => b.addEventListener('click', () => showPage('home'))); $('homeButton').addEventListener('click', () => showPage('home')); $('brandHome').addEventListener('click', e => { e.preventDefault(); showPage('home'); });
+      document.querySelectorAll('[data-open]').forEach(b => b.addEventListener('click', () => { const p = b.dataset.open; showPage(p === 'sentences' ? 'sentences' : p); })); document.querySelectorAll('[data-home]').forEach(b => b.addEventListener('click', () => showPage('home'))); $('brandHome').addEventListener('click', e => { e.preventDefault(); showPage('home'); });
       const layouts = [['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'], ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'], ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ';'], ['Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '/']];
       function renderKeyboard(target, done = []) { const root = $('keyKeyboard'); root.innerHTML = ''; layouts.forEach((r, ri) => { const row = document.createElement('div'); row.className = 'key-row'; r.forEach(k => { const el = document.createElement('div'); el.className = 'key' + (k === target ? ' active' : '') + (done.includes(k) ? ' done' : ''); el.textContent = k; el.setAttribute('aria-hidden', 'true'); row.appendChild(el); }); root.appendChild(row); }); const row = document.createElement('div'); row.className = 'key-row'; const ctrl = document.createElement('div'); ctrl.className = 'key wide'; ctrl.textContent = 'shift'; row.appendChild(ctrl); const space = document.createElement('div'); space.className = 'key space'; space.textContent = 'space'; row.appendChild(space); const enter = document.createElement('div'); enter.className = 'key wide'; enter.textContent = 'enter'; row.appendChild(enter); root.appendChild(row); }
       const keyRows = { home: 'ASDFGHJKL;'.split(''), top: 'QWERTYUIOP'.split(''), bottom: 'ZXCVBNM'.split(''), all: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('') };
